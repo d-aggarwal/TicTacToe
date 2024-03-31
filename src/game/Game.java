@@ -56,4 +56,54 @@ public class Game {
 
         }
     }
+
+    public boolean checkCombinations() {
+        int size = board.size;
+
+        for (int i =0;i<size; i++) {
+            StringBuilder s = new StringBuilder();
+            for(int j =0;j<size;j++) {
+                s.append(board.matrix[i][j]);
+            }
+
+            if(s.toString().equals(zero) || s.toString().equals(cross)) {
+                return true;
+            }
+        }
+
+        for (int i =0;i<size; i++) {
+            StringBuilder s = new StringBuilder();
+            for(int j =0;j<size;j++) {
+                s.append(board.matrix[j][i]);
+            }
+
+            if(s.toString().equals(zero) || s.toString().equals(cross)) {
+                return true;
+            }
+        }
+
+        StringBuilder s = new StringBuilder();
+        for(int i =0,j=0;i<size && j<size;i++,j++) {
+
+
+                s.append(board.matrix[j][i]);
+
+            if(s.toString().equals(zero) || s.toString().equals(cross)) {
+                return true;
+            }
+        }
+
+         s = new StringBuilder();
+        for(int i =0,j=size-1;i<size && j>=0;i++,j--) {
+
+
+            s.append(board.matrix[j][i]);
+
+            if(s.toString().equals(zero) || s.toString().equals(cross)) {
+                return true;
+            }
+        }
+
+              return false;
+    }
 }
