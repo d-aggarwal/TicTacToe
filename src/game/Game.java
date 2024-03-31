@@ -34,13 +34,15 @@ public class Game {
     }
 
     public void play() {
-        board.printboardconfig();
+
         int size = board.size;
         while (!gameOver) {
+            board.printboardconfig();
             noOfMoves ++;
             int idx = getIndex();
             int row = idx/size;
             int col = idx%size;
+            board.matrix[row][col] = players[turn].symbol;
 
             if(noOfMoves >=2*size-1 && checkCombinations()){
                 gameOver = true;
@@ -56,6 +58,8 @@ public class Game {
                 return;
             }
 
+            board.matrix[row][col] = players[turn].symbol;
+
             turn = (turn +1)%2;
         }
     }
@@ -64,13 +68,13 @@ public class Game {
 
 
         while(true) {
-            System.out.println("Player"+ players[turn].getPlayerName() + "give me position remaining from 1 to" +board.size*board.size);
+            System.out.println("Player "+ players[turn].getPlayerName() + " give me position remaining from 1 to " +board.size*board.size);
             int pos = sc.nextInt()-1;
 
             int row = pos/ board.size;
             int col = pos % board.size;
 
-            if (board.matrix[row][col] != players[turn].symbol) {
+            if (board.matrix[row][col] != '&') {
                 System.out.println("already occupied");
                 continue;
             }
