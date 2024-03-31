@@ -1,6 +1,7 @@
 package game;
 import player.Player;
 import board.Board;
+import java.util.*;
 public class Game {
     Player [] players;
     Board board;
@@ -9,6 +10,7 @@ public class Game {
     boolean gameOver;
     String zero;
     String cross;
+    Scanner sc = new Scanner(System.in);
 
     public Game(Player[] players, Board board) {
         this.players = players;
@@ -29,5 +31,29 @@ public class Game {
         this.zero = z.toString();
         this.cross= c.toString();
 
+    }
+
+    public void play() {
+        board.printboardconfig();
+    }
+
+    public int getIndex() {
+
+
+        while(true) {
+            System.out.println("Player"+ players[turn].getPlayerName() + "give me position remaining from 1 to" +board.size*board.size);
+            int pos = sc.nextInt()-1;
+
+            int row = pos/ board.size;
+            int col = pos % board.size;
+
+            if (board.matrix[row][col] != players[turn].symbol) {
+                System.out.println("already occupied");
+                continue;
+            }
+
+            return pos;
+
+        }
     }
 }

@@ -2,7 +2,7 @@ package player;
 
 public class Player {
     private String name;
-    private char symbol;
+    public char symbol;
     private String address;
     private String contactnumber;
     private String emailid;
@@ -56,4 +56,6 @@ public class Player {
         System.out.println("Player Contact Number: "+ this.contactnumber);
         System.out.println("Player Address: "+ this.address);
     }
+
+
 }
