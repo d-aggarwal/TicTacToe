@@ -35,6 +35,29 @@ public class Game {
 
     public void play() {
         board.printboardconfig();
+        int size = board.size;
+        while (!gameOver) {
+            noOfMoves ++;
+            int idx = getIndex();
+            int row = idx/size;
+            int col = idx%size;
+
+            if(noOfMoves >=2*size-1 && checkCombinations()){
+                gameOver = true;
+                board.printboardconfig();
+                System.out.println("winner is "+ players[turn].getPlayerName());
+                return;
+            }
+
+            if(noOfMoves >=size*size) {
+                gameOver = true;
+                board.printboardconfig();
+                System.out.println("Game Over ");
+                return;
+            }
+
+            turn = (turn +1)%2;
+        }
     }
 
     public int getIndex() {
